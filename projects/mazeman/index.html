@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101312">
+  <meta name="description" content="A little maze. A big chase. Play Mazeman, a free, offline arcade game.">
+  <title>Mazeman — One more dot.</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23f4d35e' d='M29 6A15 15 0 1 0 29 26L16 16Z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="game.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="Mazeman home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M29 6A15 15 0 1 0 29 26L16 16Z" fill="currentColor"/></svg>
+      <span>mazeman<span class="brand-period">.</span></span>
+      <span class="edition">THE BROWSER ARCADE</span>
+    </a>
+    <div class="header-actions">
+      <span class="offline-label"><span class="status-dot"></span> NO QUARTERS NEEDED</span>
+      <button class="help-button" id="help-button" type="button"><span class="help-icon" aria-hidden="true">?</span> How to play</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">SMALL MAZE. BIG APPETITE.</p>
+        <h1 id="page-title">One more <em>dot.</em></h1>
+        <p class="intro-description">Find your rhythm. Dodge the ghosts. Don't stop snacking.</p>
+      </div>
+      <div class="session-label"><span class="status-dot"></span><span>ALL PLAY. NO DOWNLOADS.<small>ARCADE CLASSIC / 001</small></span></div>
+    </section>
+
+    <div class="game-layout">
+      <section class="arcade" aria-label="Mazeman game">
+        <div class="scoreboard">
+          <div class="score-stat"><span class="stat-label">SCORE</span><output id="score" class="stat-value">000000</output></div>
+          <div class="level-stat"><span class="stat-label">LEVEL</span><output id="level" class="stat-value">01</output></div>
+          <div class="lives-stat"><span class="stat-label">LIVES</span><output id="lives" class="life-icons" aria-label="3 lives"></output></div>
+          <button id="pause-button" class="pause-button" type="button" aria-label="Pause game" title="Pause (P)"><span id="pause-icon" aria-hidden="true">Ⅱ</span><kbd>P</kbd></button>
+        </div>
+        <div class="board-stage">
+          <div class="canvas-wrap" id="canvas-wrap">
+            <canvas id="game-canvas" tabindex="0" aria-label="Maze game. Use arrow keys or WASD to move, P to pause, and Enter to restart after game over." aria-describedby="game-instructions">Your browser needs canvas support to play Mazeman.</canvas>
+            <div class="game-overlay" id="game-overlay" hidden>
+              <div class="overlay-card">
+                <span class="overlay-eyebrow" id="overlay-eyebrow">TAKE A BREATHER</span>
+                <h2 id="overlay-title">On pause.</h2>
+                <p id="overlay-description">The dots aren't going anywhere.</p>
+                <button class="primary-button" id="overlay-button" type="button">Back to the chase <span aria-hidden="true">→</span></button>
+                <span class="overlay-hint" id="overlay-hint">or press P</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="game-status"><span><span class="status-dot" id="game-status-dot"></span><span id="game-status-text" role="status">Your move. Use the arrow keys to begin.</span></span><span class="dots-counter"><span id="dots-left">0</span> DOTS LEFT</span></div>
+      </section>
+
+      <aside class="sidebar" aria-label="Game guide">
+        <section class="guide-card" id="game-instructions">
+          <p class="eyebrow card-eyebrow">A QUICK FIELD GUIDE</p>
+          <h2>Eat. Evade.<br><span>Repeat.</span></h2>
+          <p class="guide-description">Clear the maze, keep your lives.<br>Simple enough. Until it isn't.</p>
+          <div class="point-list">
+            <div class="point-row"><span class="item-art"><span class="dot-art"></span></span><div><strong>The little things</strong><small>Every dot counts.</small></div><span class="point-value">10 <small>PTS</small></span></div>
+            <div class="point-row"><span class="item-art"><span class="pellet-art"></span></span><div><strong>A power move</strong><small>Turn the tables for 6s.</small></div><span class="point-value">50 <small>PTS</small></span></div>
+            <div class="point-row"><span class="item-art"><svg class="ghost-art" viewBox="0 0 28 28" aria-hidden="true"><path d="M4 25V12a10 10 0 0 1 20 0v13l-5-3-5 3-5-3Z" fill="currentColor"/><path d="M9 12v3m10-3v3" stroke="#121a2b" stroke-width="3" stroke-linecap="round"/></svg></span><div><strong>Who's chasing now?</strong><small>Catch a powered-down ghost.</small></div><span class="point-value">200 <small>PTS</small></span></div>
+          </div>
+          <div class="guide-tip"><span aria-hidden="true">↗</span><p>New level, same maze.<br><strong>Faster company.</strong></p></div>
+        </section>
+
+        <section class="controls-card" aria-labelledby="controls-title">
+          <div class="card-heading"><h2 id="controls-title">Make your move</h2><span>CONTROLS</span></div>
+          <div class="move-controls"><div class="arrow-keys" aria-hidden="true"><kbd>↑</kbd><div><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></div></div><span class="controls-or">or</span><div class="wasd-keys" aria-hidden="true"><kbd>W</kbd><div><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></div></div>
+          <div class="control-line"><span>Pause / resume</span><kbd>P</kbd></div>
+          <div class="control-line"><span>New game after game over</span><kbd>↵</kbd></div>
+        </section>
+        <p class="sidebar-note"><span aria-hidden="true">✳</span> A familiar feeling. One fresh start.</p>
+      </aside>
+    </div>
+
+    <div class="touch-controls" aria-label="Touch movement controls">
+      <button type="button" data-direction="up" aria-label="Move up">↑</button>
+      <div><button type="button" data-direction="left" aria-label="Move left">←</button><button type="button" data-direction="down" aria-label="Move down">↓</button><button type="button" data-direction="right" aria-label="Move right">→</button></div>
+    </div>
+    <footer class="site-footer"><span>BUILT FOR THE JOY OF PLAY.</span><span>NO INSTALLS. NO COINS. JUST ONE MORE GO.<span class="footer-dot">●</span></span></footer>
+  </main>
+
+  <dialog id="help-dialog" aria-labelledby="help-title">
+    <button class="dialog-close" id="close-help" type="button" aria-label="Close instructions">×</button>
+    <p class="eyebrow">WELCOME TO MAZEMAN</p>
+    <h2 id="help-title">Get lost.<br>Have a good time.</h2>
+    <p>Use <strong>arrow keys</strong> or <strong>WASD</strong> to move. On touchscreens, use the direction buttons below the maze.</p>
+    <ul><li>Eat dots for <strong>10 points</strong> and power pellets for <strong>50</strong>.</li><li>Power pellets make ghosts flee for <strong>6 seconds</strong>. Catch one for <strong>200 points</strong>.</li><li>A ghost catches you? Lose a life and return to the start. You have <strong>3 lives</strong>.</li><li>Clear every dot and pellet to reach the next level. The ghosts get faster.</li><li>Press <strong>P</strong> to pause or resume. After game over, press <strong>Enter</strong> to start fresh.</li></ul>
+    <button class="primary-button" id="play-button" type="button">Got it. Let's play. <span aria-hidden="true">→</span></button>
+  </dialog>
+</body>
+</html>
