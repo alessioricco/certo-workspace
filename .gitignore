@@ -1,0 +1,5 @@
+# Your settings, including your API key. Never commit this.
+.env
+# What Certo builds and records.
+projects/
+artifacts/
