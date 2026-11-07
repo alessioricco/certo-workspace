@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090e16">
+  <meta name="description" content="A little ship. An endless asteroid belt. An offline, vector-style arcade game.">
+  <title>Asteroids — Into the belt</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%239effcf' d='M16 2 29 29 16 23 3 29Z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main aria-label="Asteroids arcade game">
+    <canvas id="playfield" tabindex="0" aria-label="Asteroids playfield. Turn with Left and Right or A and D, thrust with Up or W, fire with Space, and pause with P.">
+      This game needs a browser with HTML canvas support.
+    </canvas>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <header class="hud">
+      <div class="brand">
+        <div class="eyebrow"><span class="signal" aria-hidden="true"></span> DEEP SPACE / ARCADE 01</div>
+        <h1>ASTEROIDS<span class="brand-dot">.</span></h1>
+        <p class="tagline">Into the belt.</p>
+      </div>
+      <div class="score-block">
+        <span class="label">SCORE</span>
+        <output id="score" aria-label="Score">000000</output>
+      </div>
+      <div class="mission">
+        <div class="mission-stats">
+          <div class="wave-block"><span class="label">WAVE</span><output id="wave" aria-label="Wave">01</output></div>
+          <div class="lives-block"><span class="label">LIVES</span><output id="lives" aria-label="Lives">3</output><span id="life-icons" aria-hidden="true">△ △ △</span></div>
+        </div>
+        <button id="pause" class="quiet-button" type="button" aria-label="Pause game" aria-keyshortcuts="P"><span id="pause-icon" aria-hidden="true">Ⅱ</span><span id="pause-label">PAUSE</span><kbd>P</kbd></button>
+      </div>
+    </header>
+
+    <div id="wave-notice" class="wave-notice" role="status" aria-live="polite">
+      <span class="notice-line" aria-hidden="true"></span>
+      <span id="notice-text">WAVE 01 · CLEAR THE BELT</span>
+      <span class="notice-line" aria-hidden="true"></span>
+    </div>
+    <div id="launch-hint" class="launch-hint">A little ship. An endless sky.<span>Hold <kbd>↑</kbd> to thrust. <kbd>SPACE</kbd> to make room.</span></div>
+
+    <section id="overlay" class="overlay" aria-labelledby="overlay-title" hidden>
+      <div class="overlay-card">
+        <div class="orbital-mark" aria-hidden="true"><span>△</span></div>
+        <p id="overlay-kicker" class="eyebrow">FLIGHT ON HOLD</p>
+        <h2 id="overlay-title">Take a breath.</h2>
+        <p id="overlay-copy">The belt can wait. Your flight is paused.</p>
+        <button id="overlay-action" class="primary-button" type="button">Resume flight <span aria-hidden="true">↗</span></button>
+        <p id="overlay-shortcut" class="overlay-shortcut">or press <kbd>P</kbd> to resume</p>
+      </div>
+    </section>
+
+    <footer class="flight-deck">
+      <div class="telemetry"><span class="label">FLIGHT STATUS</span><span id="flight-status"><i aria-hidden="true"></i> SHIELDS UP</span><span class="speed"><span id="speed">000</span> U/S</span></div>
+      <div class="keyboard-guide" aria-label="Keyboard controls">
+        <span><kbd>←</kbd><kbd>→</kbd> <span class="key-alt">/ A D</span> ROTATE</span>
+        <span><kbd>↑</kbd> <span class="key-alt">/ W</span> THRUST</span>
+        <span><kbd>SPACE</kbd> FIRE</span>
+      </div>
+      <div class="points-guide" aria-label="Points per rock"><span>46 / <b>20</b></span><span>26 / <b>50</b></span><span>14 / <b>100</b></span><small>ROCK SIZE / PTS</small></div>
+    </footer>
+
+    <nav class="touch-controls" aria-label="Touch flight controls">
+      <div class="steering">
+        <button type="button" data-control="left" aria-label="Rotate left">↶</button>
+        <button type="button" data-control="thrust" aria-label="Thrust">↑</button>
+        <button type="button" data-control="right" aria-label="Rotate right">↷</button>
+      </div>
+      <button type="button" data-control="shoot" class="fire-button" aria-label="Fire">FIRE <span aria-hidden="true">⊕</span></button>
+    </nav>
+    <p id="announcer" class="sr-only" role="status" aria-live="polite"></p>
+    <noscript><div class="no-script">Enable JavaScript to enter the asteroid belt.</div></noscript>
+  </main>
+  <script src="game.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

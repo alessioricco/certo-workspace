@@ -1,0 +1,12 @@
+{
+  "name": "asteroids",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A dependency-free, offline canvas space-rocks game.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
