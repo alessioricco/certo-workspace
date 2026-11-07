@@ -2,6 +2,10 @@
 
 A browser maze chase in plain JavaScript, HTML, and CSS. No packages, build step, server, or internet connection required.
 
+## Preview
+
+![Mazeman browser game showing the maze, player, ghosts, and controls](asset.png)
+
 ## Play
 
 Open `index.html` directly in a modern browser (Chrome, Edge, Firefox, or Safari). Double-click the file, or run one of these commands from this directory:
