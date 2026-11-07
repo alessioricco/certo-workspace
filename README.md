@@ -2,6 +2,34 @@
 
 Made by `certo init`. Run every command below from this folder.
 
+## Aperture cryptocurrency dashboard
+
+The market-data web app lives in `projects/crypto-dashboard`. Requires Node.js **22.22+** and npm; no API key is needed.
+
+```bash
+cd projects/crypto-dashboard
+npm ci
+npm run dev
+```
+
+Open **http://127.0.0.1:5173**. For a production build and local preview, run from that project directory:
+
+```bash
+npm run build
+npm run preview -- --port 4173 --strictPort
+```
+
+Open **http://127.0.0.1:4173**. Run verification with:
+
+```bash
+npm test
+npm run typecheck
+npx playwright install chromium
+npm run test:e2e
+```
+
+Aperture uses public Binance Spot REST and WebSocket data; regional restrictions, network failures, and rate limits are reported without fabricated price fallbacks. It is a data viewer, not a trading app. See the [project README](projects/crypto-dashboard/README.md) for data semantics, architecture, controls, and service limitations. Existing projects below are unchanged.
+
 ## 1. Check your settings
 
 ```bash
