@@ -1,0 +1,12 @@
+{
+  "name": "iron-horizon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An original dependency-free wireframe tank driving game.",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

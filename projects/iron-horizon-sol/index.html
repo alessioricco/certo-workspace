@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a09">
+  <meta name="description" content="Pilot a combat tank across the Cinder Plain. An original, hand-built wireframe tank combat game.">
+  <title>Iron Horizon — The Cinder Plain</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="view" aria-label="First-person wireframe view of the Cinder Plain. Drive with W and S, turn with A and D, or use the arrow keys. Fire with Space."></canvas>
+  <div class="screen-texture" aria-hidden="true"></div>
+  <div class="viewport-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div><h1>IRON HORIZON<span class="edition"> / 04</span></h1><p>INDEPENDENT ARMORED PATROL</p></div>
+    </div>
+    <div class="header-actions">
+      <span class="live-label"><span class="live-dot"></span> <span id="link-status">SYSTEM ONLINE</span></span>
+      <button id="pause-button" type="button" title="Pause or resume (P / Escape)">Ⅱ <span>PAUSE</span></button>
+      <button id="help-button" type="button" title="Field guide (H)" aria-label="Open field guide">?</button>
+    </div>
+  </header>
+
+  <main class="hud" aria-label="Tank instruments">
+    <section class="heading-instrument" aria-label="Compass">
+      <div class="instrument-label">AZIMUTH <span id="heading-value">000°</span></div>
+      <canvas id="compass" width="440" height="42" aria-hidden="true"></canvas>
+      <div class="heading-pointer" aria-hidden="true"></div>
+    </section>
+
+    <section class="scan-panel" aria-label="Radar and hostile bearing">
+      <div class="scan-display">
+        <canvas id="radar" width="136" height="136" aria-label="Heading-relative enemy radar within 160 metres"></canvas>
+        <div class="scan-copy"><p class="instrument-label">LOCAL RADAR</p><strong>160<span>M</span></strong><p><span class="scan-dot"></span> HOSTILE TRACKING</p><span class="scan-count">4 SECOND SWEEP</span></div>
+      </div>
+      <p id="threat-state" role="status">ENEMY AHEAD</p>
+    </section>
+
+    <section class="sector-info">
+      <p class="eyebrow"><span class="small-cross">+</span> COMBAT PATROL / 004</p>
+      <h2>THE CINDER PLAIN</h2>
+      <p class="sector-subtitle">Hold the line. Keep moving.</p>
+      <div class="sector-rule"></div>
+      <p class="coordinate-label">POSITION / METRES</p>
+      <p class="coordinates"><span>X <b id="position-x">+0000</b></span><span>Z <b id="position-z">+0000</b></span></p>
+    </section>
+
+    <section class="combat-panel" aria-label="Combat instruments">
+      <div class="combat-readouts">
+        <div><p class="instrument-label">SCORE</p><strong id="score">000000</strong></div>
+        <div><p class="instrument-label">HIGH SCORE</p><strong id="high-score">000000</strong></div>
+        <div><p class="instrument-label">LIVES</p><strong id="lives" aria-live="polite" aria-label="Lives remaining">3 / 3</strong></div>
+      </div>
+      <p id="wave-state" role="status">WAVE 01 / 0 OF 5 DESTROYED</p>
+      <p id="storage-state">BEST SAVED LOCALLY</p>
+      <p id="weapon-state">SPACE / FIRE READY</p>
+      <p id="target-state">ASH WARDEN 01 / 110 M</p>
+      <p id="combat-state" role="status">CORAL CONTACT / HOSTILE</p>
+    </section>
+    <div class="reticle" aria-hidden="true"><i></i><i></i><i></i><i></i><span></span></div>
+    <div class="view-label" aria-hidden="true">FIXED CANNON <span>•</span> 200 M RANGE</div>
+    <div class="horizon-label" aria-hidden="true">DATUM — 0 M</div>
+    <section id="combat-result" class="combat-result" hidden aria-labelledby="game-over-title" role="status">
+      <p class="eyebrow">SIGNAL LOST / UNIT 07</p>
+      <h2 id="game-over-title">Game over</h2>
+      <p>Three lives spent on the Cinder Plain.</p>
+      <button id="restart-button" type="button">ENTER / NEW PATROL →</button>
+    </section>
+
+    <footer class="dashboard">
+      <section class="velocity-panel" aria-label="Drive instruments">
+        <p class="instrument-label">GROUND VELOCITY <span id="gear">NEUTRAL</span></p>
+        <div class="speed-readout"><strong id="speed">00</strong><span>M/S<span class="speed-separator"> / </span><b id="speed-kmh">0</b> KM/H</span></div>
+        <div class="speed-meter" aria-hidden="true"><div id="speed-fill"></div></div>
+        <div class="meter-labels"><span>0</span><span>7</span><span>14</span></div>
+      </section>
+
+      <section class="drive-panel" aria-label="Driving controls">
+        <div class="drive-title"><span class="live-dot"></span> <span id="drive-state">AWAITING INPUT</span><span class="drive-number">UNIT 07</span></div>
+        <div class="key-guide">
+          <div><span class="key-pair"><kbd>W</kbd><kbd>↑</kbd></span><span>FORWARD</span></div>
+          <div><span class="key-pair"><kbd>S</kbd><kbd>↓</kbd></span><span>REVERSE</span></div>
+          <div><span class="key-pair"><kbd>A</kbd><kbd>←</kbd></span><span>TURN LEFT</span></div>
+          <div><span class="key-pair"><kbd>D</kbd><kbd>→</kbd></span><span>TURN RIGHT</span></div>
+        </div>
+        <p class="drive-hint"><span>SPACE / FIRE CANNON</span><span><kbd>R</kbd> RESET &nbsp; <kbd>P</kbd> PAUSE</span></p>
+      </section>
+
+    </footer>
+  </main>
+
+  <div class="bottomline"><span>IH / ARMORED DIVISION</span><span>VECTOR DISPLAY <span class="bottom-dot">·</span> <span id="frame-rate">60</span> FPS</span><span>CINDER PLAIN <span class="bottom-dot">·</span> COMBAT PATROL</span></div>
+
+  <div class="touch-controls" aria-label="Touch driving and firing controls">
+    <button type="button" data-control="left" aria-label="Turn left">←</button>
+    <div><button type="button" data-control="forward" aria-label="Drive forward">↑</button><button type="button" data-control="backward" aria-label="Drive backward">↓</button></div>
+    <button type="button" data-control="right" aria-label="Turn right">→</button>
+    <button type="button" class="fire-button" data-control="fire" aria-label="Fire cannon">FIRE</button>
+  </div>
+
+  <dialog id="pause-dialog" aria-labelledby="dialog-title">
+    <p class="eyebrow">IRON HORIZON / COMBAT PATROL</p>
+    <h2 id="dialog-title">ENGINE IDLING.</h2>
+    <p class="dialog-description">Pilot Unit 07 across the Cinder Plain. Coral wireframes are Ash Wardens: hostile tanks that turn, approach, and fire. Use the amber structures as cover.</p>
+    <div class="dialog-controls">
+      <span><kbd>W</kbd> <kbd>↑</kbd></span><span>Drive forward</span>
+      <span><kbd>S</kbd> <kbd>↓</kbd></span><span>Reverse</span>
+      <span><kbd>A</kbd> <kbd>D</kbd> / <kbd>←</kbd> <kbd>→</kbd></span><span>Turn / aim the tank</span>
+      <span><kbd>SPACE</kbd></span><span>Fire ahead (hold to repeat)</span>
+      <span><kbd>R</kbd></span><span>Reset patrol, score, and lives</span>
+      <span><kbd>ENTER</kbd></span><span>New patrol after game over</span>
+      <span><kbd>P</kbd> / <kbd>ESC</kbd></span><span>Pause / resume</span>
+      <span><kbd>H</kbd></span><span>Field guide / resume</span>
+    </div>
+    <p class="dialog-footnote">Patrol 04: one player shell at a time, with a 200 m range. Structures stop shells. Each Warden destroyed scores 1000; the next appears at a distance. Every 5 kills advances the wave: Wardens move faster and reload sooner. Radar dots and bearing warnings track enemies around you. You have 3 lives; Enter restarts after Game over. High scores stay in this browser when local storage is available.</p>
+    <button id="resume-button" type="button">RESUME PATROL <span>→</span></button>
+  </dialog>
+
+  <noscript><div class="no-script">Enable JavaScript to explore Iron Horizon. No downloads, packages, or server are needed.</div></noscript>
+  <script src="engine.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
