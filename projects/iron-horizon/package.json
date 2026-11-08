@@ -1,0 +1,10 @@
+{
+  "name": "iron-horizon",
+  "version": "0.1.0",
+  "description": "A first-person wireframe tank game in the browser",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  },
+  "license": "UNLICENSED"
+}

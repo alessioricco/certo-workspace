@@ -2,6 +2,23 @@
 
 Made by `certo init`. Run every command below from this folder.
 
+## Asteroids browser game
+
+The dependency-free space-rocks game lives in `projects/asteroids`. Open `projects/asteroids/index.html` directly in a modern browser; there is nothing to install and no server or build step. For example, on macOS:
+
+```bash
+open projects/asteroids/index.html
+```
+
+Run its tests with Node.js **18+**:
+
+```bash
+cd projects/asteroids
+npm test
+```
+
+Use the arrows or A/D/W to fly, Space to fire, P to pause, and Enter to restart after game over. Touch controls are included. See the [game README](projects/asteroids/README.md) for cross-platform launch commands and rules. The implementation follows `tasks/space-rocks.md`; there is no `tasks/asteroids.md` in this workspace.
+
 ## Aperture cryptocurrency dashboard
 
 The market-data web app lives in `projects/crypto-dashboard`. Requires Node.js **22.22+** and npm; no API key is needed.
