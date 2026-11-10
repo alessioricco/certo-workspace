@@ -2,6 +2,17 @@
 
 Only delivered work belongs here; future acceptance targets live in [PLAN.md](PLAN.md). This project has no released version yet.
 
+## 2026-11-10 — M0-A revision 2: revalidation
+
+- Reviewed the existing proposal against `tasks/galakka.md`; a repeated task reference does not approve the plan. M0-B and M1–M9 remain unstarted.
+- Reproduced the README documentation validator's `Unexpected project files` failure caused by the managed `.certo/` directory. Corrected the entry check to exclude only that directory; all other unexpected entries still fail. No Certo contents were read or modified.
+- Rechecked all nine proposed development package versions using official npm version endpoints: versions exist, declared licenses are MIT/Apache-2.0, and engine/peer ranges support the proposed Node 22.22.x/compiler/linter/test stack. This is metadata verification, not dependency installation, a transitive audit, or an executed toolchain check.
+- **PASS:** executed the corrected README shell block: `PASS: four nonempty docs; links, fences, whitespace, decisions, milestones, approval boundary`.
+- **PASS:** `git diff --check` and `git diff --cached --check`; scoped review covers only the four project documents and the repository AGENTS validator note. Unrelated task/project files remain unstaged.
+- Manual verification: from `projects/latticewake/`, read PLAN sections 1–7, run the README documentation block, and confirm PROPOSED / approval NOT RECEIVED. The only project entries are the four planning documents and managed `.certo/` state.
+- Game tests, lint, build, browser-console and FPS checks remain **not applicable / not run**: there is no executable implementation. Nothing was installed, pushed, published, or tagged.
+- Local handoff commit subject: `Keep Latticewake plan verification compatible with managed run state`; retrieve its identifier with `git log -1 --oneline -- projects/latticewake` from the workspace root.
+
 ## 2026-11-10 — M0-A: research and plan for review
 
 ### Added

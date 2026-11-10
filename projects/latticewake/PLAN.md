@@ -1,6 +1,6 @@
 # Latticewake — implementation plan
 
-**Revision:** 1 · **Research date:** 2026-11-10 · **Status:** PROPOSED — awaiting plan approval
+**Revision:** 2 · **Research date:** 2026-11-10 · **Status:** PROPOSED — awaiting plan approval
 
 An original, single-player fixed shooter about defending a luminous navigation lattice from geometric raiders. All names, silhouettes, visual recipes, sound patches, and musical phrases will be original. This document proposes work; it does not claim that the game exists yet.
 
@@ -175,7 +175,7 @@ A hand-authored atlas is efficient but adds export/source synchronization and au
 | `@playwright/test` | 1.65.0 | Apache-2.0 | 2026-11-05 | Production-browser smoke suite |
 | `@types/node` | 22.20.5 | MIT | 2026-10-01 | Node/tooling type definitions |
 
-Vite and Vitest accept the proposed Node baseline; typescript-eslint accepts ESLint 10 and TypeScript 6.0, but **not** current TypeScript 7. Latest tags and peer ranges are research evidence only. M0-B must resolve without peer overrides, run all checks, pin actual versions and `package-lock.json`, and confirm each selected branch is actively supported. If TypeScript 6 ceases to be supported before setup, select a supported compiler/parser pair; do not suppress incompatibility warnings.
+All nine candidate versions were rechecked against official npm version metadata during revision 2: declared licenses and Node/peer ranges match this proposal. Vite and Vitest accept the proposed Node baseline; typescript-eslint accepts ESLint 10 and TypeScript 6.0, but **not** current TypeScript 7. Registry metadata is research evidence only, not an installed-toolchain test. M0-B must resolve without peer overrides, run all checks, pin actual versions and `package-lock.json`, and confirm each selected branch is actively supported. If TypeScript 6 ceases to be supported before setup, select a supported compiler/parser pair; do not suppress incompatibility warnings.
 
 Before any dependency is accepted: inspect direct/transitive licenses and maintenance, reject unresolved/unknown or copyleft terms, review known vulnerabilities, retain notices in `THIRD_PARTY_NOTICES.md`, and record justification. Permissive allowlist: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, and 0BSD; ISC/0BSD are treated as permissive equivalents, not exceptions for copyleft. Review dual licenses and non-code asset licenses explicitly. No package installation or package-manager configuration changes in M0-A. Browser binaries are testing infrastructure, not distributed game assets; record their separate notices if redistributed (none planned).
 
@@ -372,7 +372,7 @@ Targets, not results from this planning milestone:
 
 ### M0-A documentation-only checks and manual review
 
-This milestone has no `package.json`, game, test runner, or build. Do not run another project's tests and call them Latticewake checks. Validate the four project Markdown files exist and are nonempty, their local document links resolve, code fences are balanced, all six decision areas and M0–M9 definitions are present, no implementation files slipped in, and `git diff --check` passes. Review the staged paths for unrelated files/secrets before committing. No testing infrastructure is introduced just to test Markdown.
+This milestone has no `package.json`, game, test runner, or build. Do not run another project's tests and call them Latticewake checks. Validate the four project Markdown files exist and are nonempty, their local document links resolve, code fences are balanced, all six decision areas and M0–M9 definitions are present, no implementation files slipped in, and `git diff --check` passes. Exclude only the managed `.certo/` directory from the project-entry check; never inspect or modify its contents. Review the staged paths for unrelated files/secrets before committing. No testing infrastructure is introduced just to test Markdown.
 
 Manual review now: read sections 1–2 for the approval boundary and trade-offs; section 3 for the proposed game; section 4 for architecture/determinism; sections 5–7 for gates and risks. Verify the approval status remains PROPOSED and that install/run commands are explicitly future contracts. Confirm only planning documents were added. The M0 handoff records actual check output and the local commit; later milestones record their actual commands, manual results, and remaining limitations rather than copying this plan as evidence.
 
@@ -429,7 +429,7 @@ Run `npm run check` and `npm run test:e2e` for the current feature set. Zero bui
 
 | Checkpoint | Status | Evidence |
 | --- | --- | --- |
-| M0-A research and planning | Documentation complete and checked; plan approval pending | README documentation validator PASS; links/fences/whitespace/scope and staged-path review PASS; sources/candidates recorded above. Handoff commit subject/evidence in CHANGELOG. Game tests/lint/build/FPS: N/A, not run. |
+| M0-A research and planning | Revision 2 documentation complete and checked; plan approval pending | Corrected README validator PASS with managed `.certo/` excluded; links/fences/whitespace/scope review PASS; nine direct candidates rechecked against official npm metadata. Handoff commit subject/evidence in CHANGELOG. Game tests/lint/build/FPS: N/A, not run. |
 | Plan approval | **NOT RECEIVED** | No approval is implied by resuming the interrupted planning task. |
 | M0-B foundations | NOT STARTED — gated by plan approval | No manifests, application source, dependencies, CI, or canvas created. |
 | M1–M9 | NOT STARTED | Future definitions above are acceptance targets, not completion evidence. |

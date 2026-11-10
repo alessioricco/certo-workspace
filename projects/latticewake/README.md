@@ -23,7 +23,7 @@ No dependency installation is needed to read the documents. Use a Markdown viewe
 
 ### Documentation verification (available now)
 
-With Python 3, run this from `projects/latticewake/`. It uses only the standard library; it is a documentation check, **not** a game test suite.
+With Python 3, run this from `projects/latticewake/`. It uses only the standard library; it is a documentation check, **not** a game test suite. The managed `.certo/` directory is excluded without reading or modifying its contents; every other entry must be one of the four planning documents.
 
 ```sh
 python3 - <<'PY'
@@ -31,7 +31,8 @@ from pathlib import Path
 import re
 root = Path.cwd()
 names = {'PLAN.md', 'DECISIONS.md', 'CHANGELOG.md', 'README.md'}
-assert {p.name for p in root.iterdir()} == names, 'Unexpected project files'
+entries = {p.name for p in root.iterdir() if not (p.name == '.certo' and p.is_dir())}
+assert entries == names, f'Unexpected project files: {entries ^ names}'
 for name in sorted(names):
     text = (root / name).read_text()
     assert text.strip(), f'{name}: empty'

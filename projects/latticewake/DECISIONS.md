@@ -73,3 +73,7 @@ Store only validated settings and local top-ten scores, with safe aliases and in
 Only justified, actively maintained permissive dependencies. Review direct/transitive locked packages, licenses, vulnerabilities, and compatibility before installation is accepted. Allow MIT/Apache-2.0/BSD-2-Clause/BSD-3-Clause/ISC/0BSD; unknown/copyleft entries require replacement or an explicit revised plan, not a bypass. Keep notices. The direct candidates and inspected release dates are in PLAN; transitive inventory is deferred because no lockfile exists yet.
 
 Performance/size values are targets, not measurements: 60 Hz on documented laptop and real reference phones, capped entities/DPR, ≤120 KiB gzip JS, ≤250 KiB critical first-load payload. M8/M9 cannot be signed off with fabricated hardware, Safari, deployment, or compression evidence. A future plan change needs an explicit entry, trade-offs, tests, and milestone impact.
+
+## ADR-013 — Revalidation preserves approval and workspace boundaries
+
+A repeated `tasks/galakka.md` request identifies the same M0 planning deliverable; it is not explicit approval of the existing proposal. Revision 2 therefore reviews the documents and rechecks candidate registry metadata without installing tooling or starting M0-B. The README validator excludes only the managed `.certo/` directory, not arbitrary hidden entries, and still rejects unexpected implementation files. Certo state remains unread and untouched.
