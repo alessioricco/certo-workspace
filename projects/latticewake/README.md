@@ -2,6 +2,8 @@
 
 **Latticewake 1.0.0** is an original browser fixed shooter. M9 prepares a minified, hashed, offline-capable PWA build with original install/share artwork and menu-safe updates. M8 added three-engine browser journeys, bounded local crash recovery, cross-browser replay parity and an automated accessibility audit; M7 added accessible UX, local scores, touch and gamepad support. The M1–M6 shooter, Echo Lattice, powers, boss, optional audio and effects remain intact. Local automated release checks pass, but real hardware/browser and actual-host qualification remain open; no deployment or git tag was created.
 
+![Latticewake stage 1: the player ship below a 6×4 formation of Shardlet, Spindle and Bellframe raiders, with the run controls above the field and the HUD below](asset.png)
+
 ## Install and run
 
 Prerequisite: **Node.js 22.22.x**, npm 10 or later. `.nvmrc` pins 22.22.0; with nvm, run `nvm install && nvm use` first. No keys or environment files are needed.
