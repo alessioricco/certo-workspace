@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#080d15" />
+    <meta name="description" content="Latticewake — an original fixed shooter about defending a luminous navigation lattice. Play online or install for offline play." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Latticewake · Echo Lattice" />
+    <meta property="og:description" content="Defend the navigation lattice in an original fixed shooter." />
+    <meta property="og:image" content="social-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Latticewake · Echo Lattice" />
+    <meta name="twitter:description" content="Defend the navigation lattice in an original fixed shooter." />
+    <meta name="twitter:image" content="social-card.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/latticewake-192.png" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+    <title data-i18n="latticewake_echo_lattice">Latticewake · Echo Lattice</title>
+  </head>
+  <body>
+    <main id="app">
+      <header class="masthead">
+        <div><p class="eyebrow" data-i18n="navigation_lattice_000">Navigation lattice / 000</p><h1 data-i18n="latticewake">Latticewake</h1></div>
+        <span class="checkpoint" data-i18n="release_v1_0_0_offline_ready">v1.0.0 / offline-ready</span>
+      </header>
+      <nav id="controls" aria-label="Run controls" data-i18n-aria="run_controls">
+        <span id="play-controls" hidden>
+          <button type="button" data-command="pause" data-i18n="pause_run">Pause run</button>
+          <button type="button" data-command="end" data-i18n="end_session">End session</button>
+        </span>
+        <button id="debug-toggle" type="button" data-command="debug" aria-pressed="false" aria-controls="debug" hidden data-i18n="debug_f3">Debug / F3</button>
+        <button id="audio-enable" type="button" data-i18n="enable_audio">Enable audio</button>
+        <details id="presentation">
+          <summary id="presentation-title" data-i18n="audio_effects">Audio &amp; effects</summary>
+          <div class="presentation-panel" role="group" aria-labelledby="presentation-title">
+            <p id="audio-status" role="status" data-i18n="silent_until_you_enable_audio">Silent until you enable audio.</p>
+            <label><span data-i18n="master">Master</span> <input id="master-volume" data-bus="master" type="range" min="0" max="100" value="60" /><output for="master-volume">60%</output></label>
+            <label><span data-i18n="music">Music</span> <input id="music-volume" data-bus="music" type="range" min="0" max="100" value="35" /><output for="music-volume">35%</output></label>
+            <label><span data-i18n="sfx">SFX</span> <input id="sfx-volume" data-bus="sfx" type="range" min="0" max="100" value="65" /><output for="sfx-volume">65%</output></label>
+            <label><input id="audio-mute" type="checkbox" /> <span data-i18n="mute_all_audio">Mute all audio</span></label>
+            <label><input data-effect="low" type="checkbox" /> <span data-i18n="low_effects_dpr_1_25">Low effects (DPR ≤1.25)</span></label>
+            <label><input data-effect="particles" type="checkbox" checked /> <span data-i18n="fragments">Fragments</span></label>
+            <label><input data-effect="shake" type="checkbox" checked /> <span data-i18n="small_impact_shake">Small impact shake</span></label>
+            <label><input data-effect="glow" type="checkbox" /> <span data-i18n="canvas_glow">Canvas glow</span></label>
+            <label><input data-effect="scanlines" type="checkbox" /> <span data-i18n="scanlines">Scanlines</span></label>
+            <label><span id="colors-label" data-i18n="colors">Colors</span> <select id="palette" aria-labelledby="colors-label" data-setting="palette"><option value="default" data-i18n="original">Original</option><option value="color-safe" data-i18n="color_safe_blue_amber">Color-safe blue / amber</option><option value="contrast" data-i18n="high_contrast">High contrast</option></select></label>
+            <label><span id="motion-label" data-i18n="motion">Motion</span> <select id="motion" aria-labelledby="motion-label" data-setting="motion"><option value="system" data-i18n="follow_system">Follow system</option><option value="reduced" data-i18n="reduce_motion">Reduce motion</option></select></label>
+            <label><span id="touch-label" data-i18n="touch_movement">Touch movement</span> <select id="touch-mode" aria-labelledby="touch-label" data-setting="touch"><option value="drag" data-i18n="drag_pad">Drag pad</option><option value="buttons" data-i18n="large_direction_buttons">Large direction buttons</option></select></label>
+            <label><input id="autofire" data-setting="autofire" type="checkbox" /> <span data-i18n="autofire_during_runs">Autofire during runs</span></label>
+            <p data-i18n="settings_save_on_this_device_audio_always_needs_an_expl">Settings save on this device. Audio always needs an explicit gesture. Reduced motion hides decoration, never hazards.</p>
+            <p id="audio-meter" aria-label="Audio diagnostics" data-i18n-aria="audio_diagnostics"></p>
+          </div>
+        </details>
+        <button id="help-open" type="button" data-i18n="how_to_play">How to play</button>
+        <p class="key-guide" data-i18n="a_d_move_space_j_hold_fire_esc_p_pause_g_end_session_x_">← → / A D: move · Space / J: hold fire · Esc / P: pause · G: end session · X / K: Echo Lattice</p>
+      </nav>
+      <section id="stage" aria-label="Formation playfield" data-i18n-aria="formation_playfield">
+        <canvas id="playfield" role="img" tabindex="0" aria-label="Latticewake formation, 360 by 640 logical units. Move with Left and Right; hold Space to fire" data-i18n-aria="latticewake_formation_360_by_640_logical_units_move_wit" hidden>
+          Canvas 2D support is required to display the playfield.
+        </canvas>
+        <div id="startup-panel">
+          <p data-i18n="establishing_canvas_connection">Establishing canvas connection.</p>
+          <p data-i18n="if_this_message_remains_reconnect_and_reload_javascript">If this message remains, reconnect and reload. JavaScript and Canvas 2D must be enabled.</p>
+          <button id="retry" type="button" hidden data-i18n="retry_canvas">Retry canvas</button>
+        </div>
+        <section id="scene-panel" aria-labelledby="scene-heading" hidden>
+          <h2 id="scene-heading" data-i18n="defend_the_lattice">Defend the lattice</h2>
+          <p id="scene-description" data-i18n="three_lives_dodge_telegraphed_dives_and_hostile_shots_c">Three lives. Dodge telegraphed dives and hostile shots. Capture ringed pulses with X / K. Collect W / F / O power-ups. Every fifth stage: Meridian Engine.</p>
+          <p id="run-summary" hidden></p>
+          <form id="score-entry" hidden>
+            <label for="score-alias" data-i18n="pilot_alias_1_12_letters_digits_spaces_or">Pilot alias (1–12 letters, digits, spaces, _ or -)</label>
+            <input id="score-alias" name="alias" maxlength="12" value="PILOT" autocomplete="off" spellcheck="false" />
+            <button id="score-save" type="submit" data-i18n="save_local_score">Save local score</button>
+          </form>
+          <p id="score-feedback" aria-live="polite"></p>
+          <div class="scene-actions">
+            <button id="primary" type="button" data-command="primary" data-i18n="start_run">Start run</button>
+            <button id="menu" type="button" data-command="menu" hidden data-i18n="return_to_menu">Return to menu</button>
+            <button id="pwa-update" type="button" hidden data-i18n="pwa_install_update">Install update</button>
+          </div>
+          <details id="diagnostics"><summary data-i18n="crash_diagnostics">Diagnostics</summary><p data-i18n="crash_intro">Crash records stay on this device. Each keeps a redacted message, scene, stage and rules version, with no URLs, file paths or stack traces. The newest five are kept.</p><p id="crash-count" role="status"></p><label for="crash-report" data-i18n="crash_report">Crash report (JSON)</label><textarea id="crash-report" readonly rows="6" spellcheck="false"></textarea><div class="scene-actions"><button id="crash-download" type="button" data-i18n="download_report">Download report</button><button id="crash-clear" type="button" data-i18n="clear_crash_log">Clear crash log</button></div></details>
+          <details id="scores"><summary data-i18n="local_top_ten">Local top ten</summary><p data-i18n="no_uploads_scores_belong_to_this_browser_and_origin">No uploads. Scores belong to this browser and origin.</p><ol id="score-list"></ol><p id="scores-empty" data-i18n="no_scores_yet_finish_a_run_to_record_one">No scores yet. Finish a run to record one.</p></details>
+        </section>
+        <pre id="debug" aria-label="Engine diagnostics" data-i18n-aria="engine_diagnostics" hidden></pre>
+      </section>
+      <div id="touch-controls" aria-label="Touch controls" data-i18n-aria="touch_controls" hidden>
+        <div id="drag-pad" data-i18n="drag_to_steer" data-touch="drag" aria-label="Drag horizontally to steer" data-i18n-aria="drag_horizontally_to_steer">Drag to steer ↔</div>
+        <div id="direction-buttons" hidden><button type="button" data-touch="left" aria-label="Move left" data-i18n-aria="move_left" data-i18n="text">←</button><button type="button" data-touch="right" aria-label="Move right" data-i18n-aria="move_right" data-i18n="text_alt">→</button></div>
+        <button type="button" data-touch="fire" data-i18n="fire">Fire</button><button type="button" data-touch="capture" data-i18n="echo">Echo</button>
+      </div>
+      <p id="input-status" aria-live="polite"></p>
+      <p id="storage-status" aria-live="polite"></p>
+      <dialog id="tutorial" aria-labelledby="tutorial-title">
+        <h2 id="tutorial-title" data-i18n="needle_pilot_briefing">Needle pilot briefing</h2>
+        <ol>
+          <li data-i18n="steer_with_a_d_hold_space_j_to_fire_touch_drag_the_pad_">Steer with ← → / A D; hold Space / J to fire. Touch: drag the pad and hold Fire. Controller: left stick / D-pad and South / right trigger.</li>
+          <li data-i18n="leave_bracketed_columns_before_dives_chevrons_hurt_ring">Leave bracketed columns before dives. Chevrons hurt. Ringed diamonds are optional Echo captures: tap X / K, West, or Echo. The field lasts 0.4s, recharges in 4s, and holds up to two 6s drones.</li>
+          <li data-i18n="collect_w_f_o_for_ward_fan_and_overclock_three_lives_st">Collect W / F / O for Ward, Fan and Overclock. Three lives; steady rings protect respawns. Every fourth stage is safe bonus practice; every fifth is the Meridian Engine. Break exposed boss parts.</li>
+        </ol>
+        <p data-i18n="pause_escape_p_start_menu_or_pause_run_menus_tab_shift_">Pause: Escape / P, Start / Menu, or Pause run. Menus: Tab / Shift-Tab / Enter, or controller Up / Down / South / East. Settings and local scores never leave this device. Play does not require audio.</p>
+        <form method="dialog"><button id="help-close" type="submit" data-i18n="back_to_game">Back to game</button></form>
+      </dialog>
+      <p id="range-stats" aria-label="Formation statistics" data-i18n-aria="formation_statistics" data-i18n="score_0_cleared_0_24_shots_0_active_0_128">Score 0 · cleared 0 / 24 · Shots 0 · active 0 / 128</p>
+      <p id="seed-note"></p>
+      <footer>
+        <div><p id="status" role="status" aria-live="polite" data-i18n="loading_engine">Loading engine…</p><p id="pwa-status" aria-live="polite"></p></div>
+        <p class="scope" data-i18n="360_640_60_hz_staged_waves_3_lives">360 × 640 · 60 Hz · Staged waves / 3 lives</p>
+      </footer>
+    </main>
+    <noscript><p class="no-script" data-i18n="enable_javascript_and_reload_to_display_the_canvas_java">Enable JavaScript and reload to display the canvas. JavaScript is required to play the formation.</p></noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

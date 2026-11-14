@@ -1,0 +1,59 @@
+name: Latticewake CI
+
+on:
+  push:
+    paths:
+      - '.github/workflows/latticewake-ci.yml'
+      - '.nvmrc'
+      - '*.json'
+      - '*.ts'
+      - '*.js'
+      - 'index.html'
+      - 'public/**'
+      - 'THIRD_PARTY_NOTICES.md'
+      - 'src/**'
+      - 'scripts/**'
+      - 'tests/**'
+  pull_request:
+    paths:
+      - '.github/workflows/latticewake-ci.yml'
+      - '.nvmrc'
+      - '*.json'
+      - '*.ts'
+      - '*.js'
+      - 'index.html'
+      - 'public/**'
+      - 'THIRD_PARTY_NOTICES.md'
+      - 'src/**'
+      - 'scripts/**'
+      - 'tests/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: latticewake-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: .
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci
+      - run: npm run check
+      - run: npm audit --audit-level=low
+      - run: npx playwright install --with-deps chromium firefox webkit
+      - run: npm run test:e2e

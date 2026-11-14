@@ -1,0 +1,52 @@
+PASS: file:// boots with three lives and zero score
+PASS: canvas draws coral enemy and amber terrain
+PASS: Space fires a visible flight state without scrolling
+PASS: enemy hit awards 1000 and spawns next contact
+PASS: new best is displayed and written to localStorage
+PASS: HUD counts kills towards the next wave
+PASS: round radar sits at top of cockpit
+PASS: radar sweep visibly animates
+PASS: driving still updates position
+PASS: P pauses combat
+PASS: pause freezes enemy, firing, and driving
+PASS: pause freezes radar sweep
+PASS: P resumes combat
+PASS: R resets score, lives, enemies, and position
+PASS: enemy aims, approaches, fires, and damages player
+PASS: cracked-glass effect produces visible damage lines
+PASS: three enemy hits stop combat and show restart
+PASS: Game over keeps the best score visible
+PASS: Enter starts a fresh round after last life
+PASS: restart button restores playable state
+PASS: canvas resizes and narrow-screen controls appear
+PASS: combat HUD does not overlap position on narrow screen
+PASS: native pointer hold fires on narrow screen
+PASS: pointer release clears fire input
+PASS: blur releases held driving and fire controls
+PASS: local-file reload completes
+PASS: earned high score survives reload without preserving current round
+PASS: turning left warns enemy is on the right
+PASS: coral enemy dot rotates to radar right
+PASS: rear contact warning follows tank heading
+PASS: turning right warns enemy is on the left
+PASS: scores, lives, radar, and pause fit resized viewport
+PASS: radar never overlaps compass
+PASS: scores, lives, radar, and pause fit resized viewport
+PASS: radar never overlaps compass
+PASS: scores, lives, radar, and pause fit resized viewport
+PASS: radar never overlaps compass
+PASS: local-file reload completes
+PASS: stored best is loaded
+PASS: lower score never overwrites a saved best
+PASS: local-file reload completes
+PASS: invalid stored score is ignored
+PASS: local-file reload completes
+PASS: invalid stored score is ignored
+PASS: local-file reload completes
+PASS: invalid stored score is ignored
+PASS: local-file reload completes
+PASS: invalid stored score is ignored
+PASS: local-file reload completes
+PASS: blocked localStorage does not prevent boot
+PASS: blocked storage still permits combat and session high scores
+PASS: no JavaScript errors; local-file WebKit combat smoke complete

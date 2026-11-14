@@ -1,20 +1,20 @@
 # Latticewake — implementation plan
 
-**Revision:** 2 · **Research date:** 2026-11-10 · **Status:** PROPOSED — awaiting plan approval
+**Revision:** 12 · **Research date:** 2026-11-10 · **Status:** APPROVED · **Current checkpoint:** M9 — local v1.0.0 release candidate prepared; production qualification OPEN
 
-An original, single-player fixed shooter about defending a luminous navigation lattice from geometric raiders. All names, silhouettes, visual recipes, sound patches, and musical phrases will be original. This document proposes work; it does not claim that the game exists yet.
+An original, single-player fixed shooter about defending a luminous navigation lattice from geometric raiders. Original names, silhouettes, visual recipes, sound patches and musical phrases. This remains the approved design/acceptance contract. M0-B–M8 automated work is recorded in the ledger; M8 hardware, real-phone and real-Safari gates remain unverified, with one WebKit audio failure-path probe open. M9 prepares local production artifacts and PWA/offline behavior. Actual-host validation and external QA remain open.
 
 ## 1. Approval boundary and scope
 
-The current deliverable is **M0-A: research, design, and plan only**. No game source, package manifest, dependency installation, CI workflow, canvas, or service worker may be created before approval of this plan. Documentation is committed locally; nothing is pushed or deployed.
+The user explicitly approved PLAN.md in the M1 task on 2026-11-10. The earlier M8 task implemented M8 only; the current task implements **M9 only**. Preserve the staged shooter, signature mechanics and audio/polish. Hardware and browser evidence unavailable here stays unverified, never passed. This task authorizes local M9 release preparation, not deployment or a git tag; nothing is pushed, deployed, published or tagged. The original M0-A planning boundary below is retained as history.
 
-The request both prohibits implementation before approval and asks every milestone to be playable. Those cannot both apply to a plan-only deliverable. Proposed resolution:
+The request both prohibits implementation before approval and asks every milestone to be playable. Those cannot both apply to a plan-only deliverable. Approved resolution:
 
-- **M0-A (this delivery):** documents and documentation checks; gameplay, FPS, lint, unit tests, and build are explicitly **not applicable**, not reported as passing.
-- **M0-B (only after plan approval):** repository-local tooling, CI, loading/error shell, and blank responsive canvas. This is a working foundation, not a shooter.
-- **M1:** an interactive navigation/state testbed, not yet combat.
+- **M0-A (historical planning delivery):** documents and documentation checks; gameplay, FPS, lint, unit tests, and build are explicitly **not applicable**, not reported as passing.
+- **M0-B (complete after approval):** repository-local tooling, CI, loading/error shell, and blank responsive canvas. This is a working foundation, not a shooter.
+- **M1 (complete):** an interactive navigation/state testbed, not yet combat.
 - **M2 onward:** a playable firing range, then a progressively complete shooter. Each checkpoint preserves all previously implemented play.
-- Stop after each approved checkpoint, run its checks, update this plan plus [CHANGELOG.md](CHANGELOG.md) and [DECISIONS.md](DECISIONS.md), and make one scoped local commit. Never infer approval of later milestones from approval of an earlier one.
+- Stop after each checkpoint, run its checks, and update PLAN, CHANGELOG, DECISIONS, and README. Certo controls advancement; do not start later milestones in this run. This isolated project has no Git repository, so no local milestone commit is possible; no parent workspace is inspected or modified.
 
 The project lives at `projects/latticewake/` in a shared workspace. Existing projects, the task specification, and `.certo/` state are outside its implementation scope. The provisional original title is **Latticewake**; a distribution-name/trademark check is a release gate, not an assertion of legal clearance.
 
@@ -161,7 +161,7 @@ A hand-authored atlas is efficient but adds export/source synchronization and au
 
 ### Proposed dependencies and license gate
 
-**Runtime npm dependencies: none.** The following are proposed direct development dependencies, researched from the official npm registry on 2026-11-10. Versions are candidates for the first approved lockfile, not installed or compatibility-tested here.
+**Runtime npm dependencies: none.** The following are proposed direct development dependencies, researched from the official npm registry on 2026-11-10. These are historical research candidates, not installed versions. The accepted lockfile uses Vite 7.3.8 and matching Vitest/coverage 4.1.12 instead of the candidate majors; other direct versions match. See ADR-014 in DECISIONS.md and package.json for the verified toolchain.
 
 | Package | Candidate | License | Latest/candidate release inspected | Why needed |
 | --- | --- | --- | --- | --- |
@@ -177,7 +177,7 @@ A hand-authored atlas is efficient but adds export/source synchronization and au
 
 All nine candidate versions were rechecked against official npm version metadata during revision 2: declared licenses and Node/peer ranges match this proposal. Vite and Vitest accept the proposed Node baseline; typescript-eslint accepts ESLint 10 and TypeScript 6.0, but **not** current TypeScript 7. Registry metadata is research evidence only, not an installed-toolchain test. M0-B must resolve without peer overrides, run all checks, pin actual versions and `package-lock.json`, and confirm each selected branch is actively supported. If TypeScript 6 ceases to be supported before setup, select a supported compiler/parser pair; do not suppress incompatibility warnings.
 
-Before any dependency is accepted: inspect direct/transitive licenses and maintenance, reject unresolved/unknown or copyleft terms, review known vulnerabilities, retain notices in `THIRD_PARTY_NOTICES.md`, and record justification. Permissive allowlist: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, and 0BSD; ISC/0BSD are treated as permissive equivalents, not exceptions for copyleft. Review dual licenses and non-code asset licenses explicitly. No package installation or package-manager configuration changes in M0-A. Browser binaries are testing infrastructure, not distributed game assets; record their separate notices if redistributed (none planned).
+Before any dependency is accepted: inspect direct/transitive licenses and maintenance, reject unresolved/unknown or copyleft terms, review known vulnerabilities, retain notices in `THIRD_PARTY_NOTICES.md`, and record justification. Permissive allowlist: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, 0BSD, and reviewed BlueOak-1.0.0 (ADR-014); ISC/0BSD are treated as permissive equivalents, not exceptions for copyleft. Review dual licenses and non-code asset licenses explicitly. No package installation or package-manager configuration changes in M0-A. Browser binaries are testing infrastructure, not distributed game assets; record their separate notices if redistributed (none planned).
 
 ### Primary sources consulted
 
@@ -277,7 +277,7 @@ One composition root creates an `App` instance and injects engine, simulation, i
 
 The engine supplies time/state transitions; it does not know enemy rules. Simulation imports only deterministic math, typed data, and the RNG. Rendering reads state/snapshots and may not mutate it. Audio consumes events tagged with simulation tick/entity ID. DOM/UI/storage handle user interactions outside simulation and send explicit actions. Data validation and loading errors reach a usable retry/menu screen; optional audio failure becomes silent mode.
 
-### Proposed folder layout (created only after approval)
+### Approved folder layout (M0-B/M1 subset exists; later modules arrive with their milestones)
 
 ```text
 projects/latticewake/
@@ -305,7 +305,7 @@ projects/latticewake/
   dist/                    # generated, ignored; deploy this only
 ```
 
-CI lives in a **project-specific** workspace `.github/workflows/latticewake-ci.yml`, with path filters and explicit working directory. Add it only in M0-B; do not alter unrelated workflows. Release deployment is a separate manually authorized workflow in M9. Pin third-party actions by reviewed commit SHA and grant read-only permissions by default; only a deploy job needs Pages/OIDC permissions.
+CI configuration lives at this project's `.github/workflows/latticewake-ci.yml`, with project path filters and explicit working directory `.`. It runs clean install, checks, audit, browser installation, and Chromium E2E with read-only permissions and verified action commit pins. The task forbids writes outside this isolated project: the originally proposed parent-workspace location is not used (ADR-015). GitHub discovers this configuration when this folder is the repository root; it is not claimed to be installed in a parent repository or remotely executed. Release deployment remains separate M9 work; no deployment permissions are included.
 
 ### Timing and replay invariants
 
@@ -331,7 +331,7 @@ Target current and previous stable Chrome/Firefox desktop, current/previous Safa
 
 ## 5. Verification and production budgets
 
-### Commands to implement in M0-B (not available in M0-A)
+### Implemented M0-B commands (run from the project root)
 
 All npm commands run in `projects/latticewake/`. Commit `package-lock.json`; subsequent installs use `npm ci`. Test/build scripts must exit without watch mode or interactive prompts.
 
@@ -380,11 +380,11 @@ Manual review now: read sections 1–2 for the approval boundary and trade-offs;
 
 ### Common gate (M0-B onward)
 
-Run `npm run check` and `npm run test:e2e` for the current feature set. Zero build/type/lint errors or warnings; real tests pass; no console/page errors in browser journeys; previously delivered play still works. Update PLAN status/evidence, CHANGELOG, DECISIONS, and README when commands/behavior change. Provide manual reproduction steps and actual results, record performance evidence appropriate to that checkpoint, review licenses/security, then commit only scoped work and stop for milestone approval. Never tag an unverified release. If a device/browser is unavailable, mark its check unverified, not passed; the M8/M9 gates remain open.
+Run `npm run check` and `npm run test:e2e` for the current feature set. Zero build/type/lint errors or warnings; real tests pass; no console/page errors in browser journeys; previously delivered play still works. Update PLAN status/evidence, CHANGELOG, DECISIONS, and README when commands/behavior change. Provide manual reproduction steps and actual results, record performance evidence appropriate to that checkpoint, review licenses/security, then stop for Certo's milestone checks. A local commit requires an available Git repository; this isolated snapshot has none. Never tag an unverified release. If a device/browser is unavailable, mark its check unverified, not passed; the M8/M9 gates remain open.
 
 | Milestone | Definition of Done / checkpoint experience | Focused automated checks beyond common gate | Manual verification at handoff |
 | --- | --- | --- | --- |
-| **M0-A — Plan (current)** | Research comparisons/recommendations, design, architecture, risks, acceptance criteria, commands, and approval boundary in docs. No game/tooling code. | Documentation consistency, links/fences, scope, whitespace and staged-path review only. Unit/lint/build/FPS: N/A. | Open the plan and decisions; confirm status is PROPOSED, original design, and no application/dependencies exist. |
+| **M0-A — Plan (complete)** | Research comparisons/recommendations, design, architecture, risks, acceptance criteria, commands, and approval boundary in docs. No game/tooling code. | Documentation consistency, links/fences, scope, whitespace and staged-path review only. Unit/lint/build/FPS: N/A. | Open the plan and decisions; confirm status is PROPOSED, original design, and no application/dependencies exist. |
 | **M0-B — Approved foundations** | Only after plan approval: manually create vanilla TS/Vite files without overwriting workspace state; npm lock, strict types/lint, real initial tests, CI, responsive blank canvas with loading/error fallback. Prepare original-asset/license registers. | At least one real viewport/resource-validation unit test; build/preview Chromium smoke with visible canvas and no page errors; dependency resolution/license gate and path-safe build. | `npm ci`; `npm run dev`; open localhost; resize/rotate blank canvas; build/preview; inspect clean console. Not combat or a completed game. |
 | **M1 — Engine core** | 60 Hz accumulator/interpolation, owned state machine (boot/menu/play/pause/game over), keyboard action map, resource loader, letterboxing/DPR, FPS/entity overlay. Interactive state/viewport testbed. | Manual-clock timing/cap/interpolation, legal/illegal state transitions, listener teardown, loader failure/retry, normalized key edges and lost focus. | Enter the testbed, navigate states, pause/resume, blur, resize, toggle overlay; no time jump or stretched playfield. |
 | **M2 — Player and shooting** | Bounded accelerated horizontal movement, hold-to-fire rhythm, pooled bullets, seeded parallax, resettable firing range. First playable shooting checkpoint. | Bounds/cooldown, no partial volleys under pool pressure, recycle/expiry, seed repeatability and render-cadence invariance. | Hold each direction against edges; fire for 2 minutes; restart/pause; background and shot rhythm stay smooth. Capture initial laptop/phone profile. |
@@ -429,9 +429,17 @@ Run `npm run check` and `npm run test:e2e` for the current feature set. Zero bui
 
 | Checkpoint | Status | Evidence |
 | --- | --- | --- |
-| M0-A research and planning | Revision 2 documentation complete and checked; plan approval pending | Corrected README validator PASS with managed `.certo/` excluded; links/fences/whitespace/scope review PASS; nine direct candidates rechecked against official npm metadata. Handoff commit subject/evidence in CHANGELOG. Game tests/lint/build/FPS: N/A, not run. |
-| Plan approval | **NOT RECEIVED** | No approval is implied by resuming the interrupted planning task. |
-| M0-B foundations | NOT STARTED — gated by plan approval | No manifests, application source, dependencies, CI, or canvas created. |
-| M1–M9 | NOT STARTED | Future definitions above are acceptance targets, not completion evidence. |
+| M0-A research and planning | COMPLETE (historical revision 2) | Original research/design retained; historical documentation checks are recorded in CHANGELOG. |
+| Plan approval | **APPROVED — 2026-11-10** | Explicit M1 request: “PLAN.md is approved”; M0-B/M1 completed and checked. Later Certo requests authorized M6–M9 in sequence. |
+| M0-B foundations | **COMPLETE** | Strict TS/Vite/npm tooling; loading/error/retry shell; responsive Canvas; asset/license registers; project-local read-only CI configuration. Clean install and common gates verified locally; remote CI is not claimed. |
+| M1 engine core | **COMPLETE** | 60 Hz bounded accumulator/interpolation; owned boot/menu/play/pause/gameover machine; keyboard action map and teardown; resource preparation/retry/cancellation; letterboxing/DPR cap; FPS/entity/input overlay and seed metadata. 64 unit tests, 26 Chromium desktop/touch-emulation cases, full check and audit PASS. Detailed evidence and manual steps in CHANGELOG. |
+| M2 player and shooting | **COMPLETE** | Playable keyboard firing range: bounded quantized acceleration/deceleration, nine-tick held fire, 128-slot atomic/generation-safe bullet pool, expiry/reuse, original cached atlas, independent seeded three-layer parallax, exact range reset and real diagnostics. Clean install, 80 unit tests, expanded coverage, 34 Chromium desktop/phone-emulation cases including two-minute firing soaks, common gates and audit PASS. Initial local profiles ≈60 FPS / 16.70 ms p95; actual reference laptop/phone qualification remains unverified. Evidence/manual steps in CHANGELOG; ADR-017–018. |
+| M3 enemies and formation | **COMPLETE** | Three original 1/2/3-HP enemies, 48-slot typed pool, separately owned 6×4 formation, quantized sampled entries/sway, relative sweeps/layers and saturated grid/contact buffers, bounded explosions/events, exact single-kill scoring/HUD and explicit clear/repeat. Clean npm ci; 99 unit tests, full check and 36/36 Chromium desktop/phone-emulation cases PASS, including real HP pixels, full 4,640-point clear/repeat and both two-minute soaks. Local profiles 59.994 FPS / 16.70 ms p95; no real-device or M8/M9 sign-off. Evidence/manual steps in CHANGELOG; ADR-019–021. |
+| M4 attacks and waves | **COMPLETE** | Validated seeded stages, 36-tick telegraphs, owned dive/return/exit paths, distinct hostile pool/swept damage, bounded difficulty, three lives, exact respawn/protection and extra-life thresholds, fixed-duration nonlethal bonuses, safe automatic tallies and game-over/restart. 117 unit tests, full check/build/audit and 40/40 Chromium desktop/phone-emulation cases PASS; formerly failing resume journey also passes 20/20 repeated cases. Dev-server controls and responsive/cue screenshots checked. Earlier goldens unchanged. ADR-022–024; manual steps/evidence in CHANGELOG. |
+| M5 signature mechanics | **COMPLETE** | Echo Lattice marked-pulse capture/two independently timed drones, Ward/Fan/Overclock authored drops and atomic volleys, three-phase Meridian Engine every fifth stage, stage-20/40 boss-before-bonus precedence, documented plain-fire/capture tuning and fixed-seed replay. Fresh 139/139 unit cases, full common gates/audit, 42/42 Chromium desktop/phone-emulation cases and four repeated boss journeys PASS. Repaired only unsafe browser-driver steering; original outcome assertions and production rules remain. Human tuning and real-device/cross-engine qualification are not claimed. ADR-025–028; evidence/manual steps in CHANGELOG. |
+| M6 audio and visual polish | **COMPLETE — Certo-checked handoff** | Original native audio, gain buses/mute, bounded event dispatch/voices, lifecycle fallback, localized hit cues, small shake, optional cached glow/scanlines and low effects implemented. 155 unit cases and common gates pass; the normal browser suite passed; the opt-in ten-minute audit is **unverified** because its recorded touch run failed (boss journey reached game over; `m6-profile.log`) and no passing rerun exists. ADR-029–031. |
+| M7 UX, meta, persistence | **COMPLETE — Certo-checked handoff** | Validated local settings/top-ten schema v2, accessible palettes/motion, semantic screens/briefing, touch/gamepad actions, English dictionary. 172 unit cases and common gates passed; 82 Chromium desktop/touch cases passed. See M7 changelog and ADR-032–034. |
+| M8 quality and performance | **AUTOMATED WORK COMPLETE; QUALIFICATION OPEN** | 182 unit cases and `npm run check` pass (97.66/95.93/95.75/98.35% coverage); four-project E2E outcome is recorded in CHANGELOG, including explicit skips/fixmes and unresolved flaky soak; seed-42 6,000-tick replay parity passes in Chromium/Firefox/WebKit. Local M1 headless Chromium 10-minute profile: 60.0007 FPS average, 16.70 ms p95, post-GC heap +1.46 MB. Reference i5, real phone/controller, real Safari/iOS and WebKit injected audio-failure probe are **not signed off**. |
+| M9 production release | **LOCAL RELEASE CANDIDATE PREPARED; PRODUCTION SIGN-OFF OPEN** | `package.json`/lock v1.0.0; minified hashed `dist/`; scope-relative install manifest, original icons/social card, generated bounded offline worker with title-menu-only updates; SHA-256 + gzip/Brotli release manifest and sidecars; README install/preview/release checklist. `npm run check`, offline/update production-browser journey and full E2E recorded in CHANGELOG. No deployment or git tag. Real hardware/browser and actual-host header/rollback checks remain open; see ADR-038. |
 
-**Approval requested:** approve this plan (including the M0 split/testbed exceptions, stack, original game concept, and scope) or request revisions. This handoff stops at M0-A; approval authorizes M0-B only, not implementation of M1–M9 in one run.
+**M9 handoff:** Local release packaging, manifest, offline worker, menu-safe update flow, original install/share assets and manual release steps are prepared and checked. M8 hardware/real-browser sign-off, production-host HTTPS/header and cache rollback checks, actual installation on target devices, and title/trademark review remain OPEN; therefore this is a release candidate, not a fully signed-off production launch. No deployment, tag, push or publication was made. Certo alone controls any further milestone.

@@ -1,0 +1,446 @@
+
+> iron-horizon@0.1.0 test
+> node --test
+
+TAP version 13
+# Subtest: toCamera({ x: 5, y: 0, z: 10 }, { x: 1, z: 2, heading: 0 }) → { x: 4, y: 0, z: 8 }
+ok 1 - toCamera({ x: 5, y: 0, z: 10 }, { x: 1, z: 2, heading: 0 }) → { x: 4, y: 0, z: 8 }
+  ---
+  duration_ms: 2.685709
+  type: 'test'
+  ...
+# Subtest: toCamera({ x: 5, y: 1, z: 0 }, { x: 0, z: 0, heading: Math.PI / 2 }) → { x: 0, y: 1, z: 5 } within 1e-9
+ok 2 - toCamera({ x: 5, y: 1, z: 0 }, { x: 0, z: 0, heading: Math.PI / 2 }) → { x: 0, y: 1, z: 5 } within 1e-9
+  ---
+  duration_ms: 0.251958
+  type: 'test'
+  ...
+# Subtest: toCamera({ x: 0, y: 0, z: 5 }, { x: 0, z: 0, heading: Math.PI / 2 }) → { x: -5, y: 0, z: 0 } within 1e-9
+ok 3 - toCamera({ x: 0, y: 0, z: 5 }, { x: 0, z: 0, heading: Math.PI / 2 }) → { x: -5, y: 0, z: 0 } within 1e-9
+  ---
+  duration_ms: 0.070916
+  type: 'test'
+  ...
+# Subtest: project({ x: 2, y: 1, z: 4 }, 200, 640, 480) → { x: 420, y: 190 }
+ok 4 - project({ x: 2, y: 1, z: 4 }, 200, 640, 480) → { x: 420, y: 190 }
+  ---
+  duration_ms: 0.079916
+  type: 'test'
+  ...
+# Subtest: project({ x: -3, y: -2, z: 10 }, 300, 800, 600) → { x: 310, y: 360 }
+ok 5 - project({ x: -3, y: -2, z: 10 }, 300, 800, 600) → { x: 310, y: 360 }
+  ---
+  duration_ms: 0.126208
+  type: 'test'
+  ...
+# Subtest: project({ x: 0, y: 0, z: 0 }, 200, 640, 480) → null
+ok 6 - project({ x: 0, y: 0, z: 0 }, 200, 640, 480) → null
+  ---
+  duration_ms: 0.061125
+  type: 'test'
+  ...
+# Subtest: clipToNear({ x: 0, y: 0, z: -1 }, { x: 0, y: 0, z: 3 }, 1) → [{ x: 0, y: 0, z: 1 }, { x: 0, y: 0, z: 3 }]
+ok 7 - clipToNear({ x: 0, y: 0, z: -1 }, { x: 0, y: 0, z: 3 }, 1) → [{ x: 0, y: 0, z: 1 }, { x: 0, y: 0, z: 3 }]
+  ---
+  duration_ms: 0.139125
+  type: 'test'
+  ...
+# Subtest: clipToNear({ x: 4, y: 2, z: 5 }, { x: 0, y: 0, z: -3 }, 1) → [{ x: 4, y: 2, z: 5 }, { x: 2, y: 1, z: 1 }]
+ok 8 - clipToNear({ x: 4, y: 2, z: 5 }, { x: 0, y: 0, z: -3 }, 1) → [{ x: 4, y: 2, z: 5 }, { x: 2, y: 1, z: 1 }]
+  ---
+  duration_ms: 0.05975
+  type: 'test'
+  ...
+# Subtest: clipToNear({ x: 0, y: 0, z: -1 }, { x: 0, y: 0, z: 0.5 }, 1) → null
+ok 9 - clipToNear({ x: 0, y: 0, z: -1 }, { x: 0, y: 0, z: 0.5 }, 1) → null
+  ---
+  duration_ms: 0.242167
+  type: 'test'
+  ...
+# Subtest: wrapAngle(3 * Math.PI / 2) → -Math.PI / 2
+ok 10 - wrapAngle(3 * Math.PI / 2) → -Math.PI / 2
+  ---
+  duration_ms: 1.105917
+  type: 'test'
+  ...
+# Subtest: wrapAngle(-3 * Math.PI / 2) → Math.PI / 2
+ok 11 - wrapAngle(-3 * Math.PI / 2) → Math.PI / 2
+  ---
+  duration_ms: 0.222625
+  type: 'test'
+  ...
+# Subtest: wrapAngle(Math.PI) → Math.PI
+ok 12 - wrapAngle(Math.PI) → Math.PI
+  ---
+  duration_ms: 0.065
+  type: 'test'
+  ...
+# Subtest: wrapAngle(-Math.PI) → Math.PI
+ok 13 - wrapAngle(-Math.PI) → Math.PI
+  ---
+  duration_ms: 0.086708
+  type: 'test'
+  ...
+# Subtest: wrapAngle(0.5) → 0.5
+ok 14 - wrapAngle(0.5) → 0.5
+  ---
+  duration_ms: 0.044583
+  type: 'test'
+  ...
+# Subtest: wrapAngle(5 * Math.PI) → Math.PI
+ok 15 - wrapAngle(5 * Math.PI) → Math.PI
+  ---
+  duration_ms: 0.035375
+  type: 'test'
+  ...
+# Subtest: projection rejects the near plane and all points behind it
+ok 16 - projection rejects the near plane and all points behind it
+  ---
+  duration_ms: 0.086125
+  type: 'test'
+  ...
+# Subtest: clipping preserves visible segments, boundary points, and endpoint order
+ok 17 - clipping preserves visible segments, boundary points, and endpoint order
+  ---
+  duration_ms: 0.069375
+  type: 'test'
+  ...
+# Subtest: clipping a parallel segment behind the plane returns null
+ok 18 - clipping a parallel segment behind the plane returns null
+  ---
+  duration_ms: 0.033833
+  type: 'test'
+  ...
+# Subtest: wrapped angles stay in (-π, π] through many full turns
+ok 19 - wrapped angles stay in (-π, π] through many full turns
+  ---
+  duration_ms: 0.188167
+  type: 'test'
+  ...
+# Subtest: driving forward and backward uses elapsed seconds without mutating the camera
+ok 20 - driving forward and backward uses elapsed seconds without mutating the camera
+  ---
+  duration_ms: 0.119792
+  type: 'test'
+  ...
+# Subtest: heading zero goes +z and a right angle goes +x
+ok 21 - heading zero goes +z and a right angle goes +x
+  ---
+  duration_ms: 0.0475
+  type: 'test'
+  ...
+# Subtest: left and right steering turn and wrap the tank without translating
+ok 22 - left and right steering turn and wrap the tank without translating
+  ---
+  duration_ms: 0.05325
+  type: 'test'
+  ...
+# Subtest: simultaneous driving and turning follows the same path at 30, 60, and 144 fps
+ok 23 - simultaneous driving and turning follows the same path at 30, 60, and 144 fps
+  ---
+  duration_ms: 0.954625
+  type: 'test'
+  ...
+# Subtest: zero/invalid time is inert and controls default to idle or clamp to their range
+ok 24 - zero/invalid time is inert and controls default to idle or clamp to their range
+  ---
+  duration_ms: 0.073666
+  type: 'test'
+  ...
+# Subtest: world contains at least ten deterministic cubes and pyramids plus mountain lines
+ok 25 - world contains at least ten deterministic cubes and pyramids plus mountain lines
+  ---
+  duration_ms: 1.332167
+  type: 'test'
+  ...
+# Subtest: ground grid stays on y = 0 and follows the camera across cells
+ok 26 - ground grid stays on y = 0 and follows the camera across cells
+  ---
+  duration_ms: 0.28725
+  type: 'test'
+  ...
+# Subtest: segments exactly on the near plane remain finite in the drawing pipeline
+ok 27 - segments exactly on the near plane remain finite in the drawing pipeline
+  ---
+  duration_ms: 0.085
+  type: 'test'
+  ...
+# Subtest: engine loads as a plain script with neither Node module nor browser APIs
+ok 28 - engine loads as a plain script with neither Node module nor browser APIs
+  ---
+  duration_ms: 2.362667
+  type: 'test'
+  ...
+# Subtest: world-line pipeline clips crossing segments without losing near-plane endpoints
+ok 29 - world-line pipeline clips crossing segments without losing near-plane endpoints
+  ---
+  duration_ms: 0.130875
+  type: 'test'
+  ...
+# Subtest: world-line pipeline adjusts for eye height without altering toCamera semantics
+ok 30 - world-line pipeline adjusts for eye height without altering toCamera semantics
+  ---
+  duration_ms: 0.089333
+  type: 'test'
+  ...
+# Subtest: circlesHit({ x: 0, z: 0, r: 1 }, { x: 3, z: 4, r: 4 }) → true
+ok 31 - circlesHit({ x: 0, z: 0, r: 1 }, { x: 3, z: 4, r: 4 }) → true
+  ---
+  duration_ms: 0.047458
+  type: 'test'
+  ...
+# Subtest: circlesHit({ x: 0, z: 0, r: 1 }, { x: 3, z: 4, r: 3.9 }) → false
+ok 32 - circlesHit({ x: 0, z: 0, r: 1 }, { x: 3, z: 4, r: 3.9 }) → false
+  ---
+  duration_ms: 0.037416
+  type: 'test'
+  ...
+# Subtest: circle contact is symmetric and includes overlap, containment, and zero-radius points
+ok 33 - circle contact is symmetric and includes overlap, containment, and zero-radius points
+  ---
+  duration_ms: 0.057375
+  type: 'test'
+  ...
+# Subtest: forward movement stops at the first obstacle, even when a long frame ends beyond it
+ok 34 - forward movement stops at the first obstacle, even when a long frame ends beyond it
+  ---
+  duration_ms: 0.137333
+  type: 'test'
+  ...
+# Subtest: straight-line collision has the same contact at 30, 60, and 144 fps
+ok 35 - straight-line collision has the same contact at 30, 60, and 144 fps
+  ---
+  duration_ms: 0.915042
+  type: 'test'
+  ...
+# Subtest: reverse motion collides, a glancing pass stays clear, and tangent contact is included
+ok 36 - reverse motion collides, a glancing pass stays clear, and tangent contact is included
+  ---
+  duration_ms: 0.077209
+  type: 'test'
+  ...
+# Subtest: contact blocks pushing, but permits reversing away, turning in place, and tangential escape
+ok 37 - contact blocks pushing, but permits reversing away, turning in place, and tangential escape
+  ---
+  duration_ms: 0.061041
+  type: 'test'
+  ...
+# Subtest: swept collision catches obstacles on the driving arc rather than only its chord
+ok 38 - swept collision catches obstacles on the driving arc rather than only its chord
+  ---
+  duration_ms: 0.138125
+  type: 'test'
+  ...
+# Subtest: an arc that bends inward from tangential contact cannot enter an obstacle
+ok 39 - an arc that bends inward from tangential contact cannot enter an obstacle
+  ---
+  duration_ms: 0.214292
+  type: 'test'
+  ...
+# Subtest: irrelevant obstacles preserve the exact free-driving arc and invalid-time behavior
+ok 40 - irrelevant obstacles preserve the exact free-driving arc and invalid-time behavior
+  ---
+  duration_ms: 0.1055
+  type: 'test'
+  ...
+# Subtest: all world obstacles have circular bounds enclosing their rotated footprint and leave spawn clear
+ok 41 - all world obstacles have circular bounds enclosing their rotated footprint and leave spawn clear
+  ---
+  duration_ms: 0.544875
+  type: 'test'
+  ...
+# Subtest: mountain skyline forms a closed, jagged ring with no seam
+ok 42 - mountain skyline forms a closed, jagged ring with no seam
+  ---
+  duration_ms: 0.276541
+  type: 'test'
+  ...
+# Subtest: mountains and crescent keep exactly the same projected size and position after driving
+ok 43 - mountains and crescent keep exactly the same projected size and position after driving
+  ---
+  duration_ms: 1.288792
+  type: 'test'
+  ...
+# Subtest: turning right moves sky landmarks left and projects them out of view behind the tank
+ok 44 - turning right moves sky landmarks left and projects them out of view behind the tank
+  ---
+  duration_ms: 0.079083
+  type: 'test'
+  ...
+# Subtest: crescent is a closed two-arc outline above the mountains and scales with the viewport
+ok 45 - crescent is a closed two-arc outline above the mountains and scales with the viewport
+  ---
+  duration_ms: 0.650458
+  type: 'test'
+  ...
+# Subtest: seeded swept paths never penetrate or miss sampled intersections across headings and frame lengths
+ok 46 - seeded swept paths never penetrate or miss sampled intersections across headings and frame lengths
+  ---
+  duration_ms: 120.142375
+  type: 'test'
+  ...
+# Subtest: turnTowards uses the +x/right convention, limits both directions, and never overshoots
+ok 47 - turnTowards uses the +x/right convention, limits both directions, and never overshoots
+  ---
+  duration_ms: 0.156625
+  type: 'test'
+  ...
+# Subtest: turnTowards takes the shortest path across the angle seam and resolves opposite headings
+ok 48 - turnTowards takes the shortest path across the angle seam and resolves opposite headings
+  ---
+  duration_ms: 0.067292
+  type: 'test'
+  ...
+# Subtest: shells travel straight along the firing heading using elapsed seconds, without mutation
+ok 49 - shells travel straight along the firing heading using elapsed seconds, without mutation
+  ---
+  duration_ms: 0.522792
+  type: 'test'
+  ...
+# Subtest: shells expire at exactly 200 metres and cannot hit anything beyond their range
+ok 50 - shells expire at exactly 200 metres and cannot hit anything beyond their range
+  ---
+  duration_ms: 0.203167
+  type: 'test'
+  ...
+# Subtest: swept shells stop at the nearest obstacle or tank even across a long frame
+ok 51 - swept shells stop at the nearest obstacle or tank even across a long frame
+  ---
+  duration_ms: 0.072792
+  type: 'test'
+  ...
+# Subtest: shell collision includes tangents, initial overlap, and rotated fire, but not near misses
+ok 52 - shell collision includes tangents, initial overlap, and rotated fire, but not near misses
+  ---
+  duration_ms: 0.055125
+  type: 'test'
+  ...
+# Subtest: shell displacement and expiry are identical at 30, 60, and 144 fps
+ok 53 - shell displacement and expiry are identical at 30, 60, and 144 fps
+  ---
+  duration_ms: 0.584708
+  type: 'test'
+  ...
+# Subtest: enemy spawns are deterministic, distant, clear of structures, and follow the player
+ok 54 - enemy spawns are deterministic, distant, clear of structures, and follow the player
+  ---
+  duration_ms: 0.740042
+  type: 'test'
+  ...
+# Subtest: enemy turns towards the player at a bounded rate and approaches when aligned
+ok 55 - enemy turns towards the player at a bounded rate and approaches when aligned
+  ---
+  duration_ms: 0.7385
+  type: 'test'
+  ...
+# Subtest: new games start with zero score, three lives, one enemy, and no active shells
+ok 56 - new games start with zero score, three lives, one enemy, and no active shells
+  ---
+  duration_ms: 0.123167
+  type: 'test'
+  ...
+# Subtest: holding fire cannot replace or create a second player shell in flight
+ok 57 - holding fire cannot replace or create a second player shell in flight
+  ---
+  duration_ms: 0.696417
+  type: 'test'
+  ...
+# Subtest: enemy fires only when nearly facing the player, within range, and off cooldown
+ok 58 - enemy fires only when nearly facing the player, within range, and off cooldown
+  ---
+  duration_ms: 0.098291
+  type: 'test'
+  ...
+# Subtest: a player hit destroys exactly one enemy, scores 1000, consumes the shell, and spawns the next
+ok 59 - a player hit destroys exactly one enemy, scores 1000, consumes the shell, and spawns the next
+  ---
+  duration_ms: 0.775375
+  type: 'test'
+  ...
+# Subtest: cover absorbs both sides of fire without scoring or taking a life
+ok 60 - cover absorbs both sides of fire without scoring or taking a life
+  ---
+  duration_ms: 0.918584
+  type: 'test'
+  ...
+# Subtest: each enemy shell hit costs one life and starts the cracked-glass timer
+ok 61 - each enemy shell hit costs one life and starts the cracked-glass timer
+  ---
+  duration_ms: 0.080375
+  type: 'test'
+  ...
+# Subtest: damage timer fades with simulation time and invalid time leaves the game unchanged
+ok 62 - damage timer fades with simulation time and invalid time leaves the game unchanged
+  ---
+  duration_ms: 0.69825
+  type: 'test'
+  ...
+# Subtest: combat movement, aim, firing and score match at 30, 60, and 144 fps
+ok 63 - combat movement, aim, firing and score match at 30, 60, and 144 fps
+  ---
+  duration_ms: 6.171916
+  type: 'test'
+  ...
+# Subtest: enemy model has separate tracks, hull, turret and a forward barrel that rotates with heading
+ok 64 - enemy model has separate tracks, hull, turret and a forward barrel that rotates with heading
+  ---
+  duration_ms: 0.40975
+  type: 'test'
+  ...
+# Subtest: combat engine is available as a plain browser script without browser globals
+ok 65 - combat engine is available as a plain browser script without browser globals
+  ---
+  duration_ms: 1.335375
+  type: 'test'
+  ...
+# Subtest: waves advance after every five destroyed enemies with faster movement and earlier fire
+ok 66 - waves advance after every five destroyed enemies with faster movement and earlier fire
+  ---
+  duration_ms: 0.070292
+  type: 'test'
+  ...
+# Subtest: the fifth kill upgrades the replacement, not the first four enemies
+ok 67 - the fifth kill upgrades the replacement, not the first four enemies
+  ---
+  duration_ms: 0.111458
+  type: 'test'
+  ...
+# Subtest: higher-wave enemies really move faster and reload sooner in combat
+ok 68 - higher-wave enemies really move faster and reload sooner in combat
+  ---
+  duration_ms: 0.430166
+  type: 'test'
+  ...
+# Subtest: radar projects enemies relative to translated and rotated player headings
+ok 69 - radar projects enemies relative to translated and rotated player headings
+  ---
+  duration_ms: 0.140584
+  type: 'test'
+  ...
+# Subtest: radar handles range boundaries, rear quarters, and turning across the angle seam
+ok 70 - radar handles range boundaries, rear quarters, and turning across the angle seam
+  ---
+  duration_ms: 0.103167
+  type: 'test'
+  ...
+# Subtest: radar sweep follows simulation time, wraps, and is identical across refresh rates
+ok 71 - radar sweep follows simulation time, wraps, and is identical across refresh rates
+  ---
+  duration_ms: 2.6745
+  type: 'test'
+  ...
+# Subtest: game is over when the last life is lost and all simulation freezes until a fresh game
+ok 72 - game is over when the last life is lost and all simulation freezes until a fresh game
+  ---
+  duration_ms: 0.104666
+  type: 'test'
+  ...
+1..72
+# tests 72
+# suites 0
+# pass 72
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 227.922167

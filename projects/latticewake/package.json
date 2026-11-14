@@ -1,0 +1,39 @@
+{
+  "name": "latticewake",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Latticewake 1.0.0 — an original offline-capable browser fixed shooter",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.22.0 <23",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "dev": "vite",
+    "lint": "eslint . --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "build": "npm run typecheck && node scripts/generate-assets.mjs && vite build && node scripts/prepare-release.mjs",
+    "preview": "vite preview",
+    "test:e2e": "playwright test",
+    "check:licenses": "node scripts/check-licenses.mjs",
+    "check:budget": "node scripts/check-budget.mjs",
+    "check": "npm run lint && npm run typecheck && npm run test:coverage && npm run build && npm run check:licenses && npm run check:budget"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.65.0",
+    "@types/node": "22.20.5",
+    "@vitest/coverage-v8": "4.1.12",
+    "eslint": "10.14.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2",
+    "vite": "7.3.8",
+    "vitest": "4.1.12"
+  },
+  "overrides": {
+    "minimatch": "11.0.5"
+  }
+}

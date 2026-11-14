@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "Latticewake — Echo Lattice",
+  "short_name": "Latticewake",
+  "description": "An original fixed shooter about defending a luminous navigation lattice.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080d15",
+  "theme_color": "#080d15",
+  "icons": [
+    { "src": "./icons/latticewake-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/latticewake-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icons/latticewake-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
