@@ -1,0 +1,16 @@
+{
+  "id": "bad-world",
+  "name": "Bad World",
+  "seed": 3,
+  "star": { "class": "Z" },
+  "planet": {
+    "massEarths": 25,
+    "radiusEarths": 1,
+    "orbitAU": 1,
+    "albedo": 0.3,
+    "dayLengthHours": 24,
+    "atmosphere": { "pressureAtm": 1, "oxygenFraction": 0.21 }
+  },
+  "objectives": [],
+  "assets": {}
+}

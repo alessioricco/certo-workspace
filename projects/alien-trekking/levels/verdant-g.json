@@ -1,0 +1,19 @@
+{
+  "id": "verdant-g",
+  "name": "Verdant",
+  "seed": 42,
+  "star": { "class": "G" },
+  "planet": {
+    "massEarths": 1.0,
+    "radiusEarths": 1.0,
+    "orbitAU": 1.0,
+    "albedo": 0.3,
+    "dayLengthHours": 24,
+    "atmosphere": { "pressureAtm": 1.0, "oxygenFraction": 0.21 }
+  },
+  "objectives": [
+    { "kind": "scan-species", "count": 5 },
+    { "kind": "reach-landmark", "name": "the tall spire" }
+  ],
+  "assets": {}
+}

@@ -1,0 +1,19 @@
+{
+  "id": "boulder-k",
+  "name": "Boulder",
+  "seed": 1234,
+  "star": { "class": "K" },
+  "planet": {
+    "massEarths": 5,
+    "radiusEarths": 1.5,
+    "orbitAU": 0.6,
+    "albedo": 0.3,
+    "dayLengthHours": 18,
+    "atmosphere": { "pressureAtm": 2, "oxygenFraction": 0.15 }
+  },
+  "objectives": [
+    { "kind": "scan-species", "count": 4 },
+    { "kind": "reach-landmark", "name": "the balanced stone" }
+  ],
+  "assets": {}
+}

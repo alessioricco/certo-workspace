@@ -1,0 +1,19 @@
+{
+  "id": "ember-m",
+  "name": "Ember",
+  "seed": 7,
+  "star": { "class": "M" },
+  "planet": {
+    "massEarths": 0.8,
+    "radiusEarths": 0.95,
+    "orbitAU": 0.15,
+    "albedo": 0.3,
+    "dayLengthHours": 60,
+    "atmosphere": { "pressureAtm": 0.5, "oxygenFraction": 0.25 }
+  },
+  "objectives": [
+    { "kind": "scan-species", "count": 3 },
+    { "kind": "reach-landmark", "name": "the red crater rim" }
+  ],
+  "assets": {}
+}

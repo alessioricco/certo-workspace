@@ -1,0 +1,33 @@
+{
+  "name": "alien-trekking",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings 0"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^26.6.6",
+    "@types/three": "^0.187.0",
+    "eslint": "^9.39.5",
+    "globals": "^17.14.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.2",
+    "vite": "^6.4.6",
+    "vitest": "^3.2.7"
+  },
+  "private": true,
+  "description": "First-person exploration of procedurally generated alien worlds, in the browser",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "simplex-noise": "^4.0.3",
+    "three": "^0.187.0"
+  }
+}
